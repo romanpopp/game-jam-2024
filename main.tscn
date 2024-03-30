@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmrsyt3jr3vnd"]
+
+[ext_resource type="Texture2D" uid="uid://cmxa1rg8yituf" path="res://catevido.png" id="1_0dyxt"]
+[ext_resource type="Script" path="res://logic/player.gd" id="1_bwaj2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nswdj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4i80i"]
+size = Vector2(63, 299)
+
+[sub_resource type="Gradient" id="Gradient_2s3x8"]
+colors = PackedColorArray(0, 0.654902, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kyjom"]
+gradient = SubResource("Gradient_2s3x8")
+height = 300
+fill_to = Vector2(0, 0)
+
+[node name="Main" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_bwaj2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_nswdj")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+scale = Vector2(0.2, 0.4)
+texture = ExtResource("1_0dyxt")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(0.8, 0.8)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="DodgeCD" type="Timer" parent="CharacterBody2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-244, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_4i80i")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = SubResource("GradientTexture2D_kyjom")
+
+[connection signal="timeout" from="CharacterBody2D/DodgeCD" to="CharacterBody2D" method="_on_dodge_cd_timeout"]
