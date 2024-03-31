@@ -1,0 +1,124 @@
+[gd_scene load_steps=11 format=3 uid="uid://ce8fqxiyibn2"]
+
+[ext_resource type="Script" path="res://logic/hud.gd" id="1_63k8e"]
+[ext_resource type="Texture2D" uid="uid://dxvancaxeg2a7" path="res://assets/blank.png" id="2_i2xxb"]
+[ext_resource type="Texture2D" uid="uid://bp841ahcvx8m3" path="res://assets/particles/lint.png" id="2_yr4c4"]
+[ext_resource type="Texture2D" uid="uid://rh7roivymexv" path="res://assets/GIANT-RED-BUTTON.png" id="3_3bnkc"]
+[ext_resource type="Texture2D" uid="uid://1etlhae5oc3h" path="res://assets/hud/toast.png" id="3_j0le3"]
+[ext_resource type="Texture2D" uid="uid://cimbb1f74cj6s" path="res://assets/hud/toaster1.png" id="4_7iddg"]
+
+[sub_resource type="Gradient" id="Gradient_hslpf"]
+colors = PackedColorArray(0.374139, 0.374139, 0.374139, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ikxtc"]
+gradient = SubResource("Gradient_hslpf")
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_1xacr"]
+offsets = PackedFloat32Array(0, 0.985915)
+colors = PackedColorArray(0, 0.85098, 0.780392, 1, 0, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u32ar"]
+gradient = SubResource("Gradient_1xacr")
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_63k8e")
+
+[node name="Healthbar" type="TextureProgressBar" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = -64.9999
+offset_right = 86.0
+offset_bottom = -0.999939
+grow_vertical = 0
+scale = Vector2(10.2, 0.439999)
+value = 100.0
+texture_under = SubResource("GradientTexture2D_ikxtc")
+texture_progress = SubResource("GradientTexture2D_u32ar")
+texture_progress_offset = Vector2(0.5, 10)
+
+[node name="AmmoBar" type="TextureProgressBar" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -82.0
+offset_top = -341.0
+offset_right = 622.0
+offset_bottom = 55.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(7, 7)
+value = 100.0
+fill_mode = 3
+texture_progress = ExtResource("2_i2xxb")
+
+[node name="BreadBar" type="TextureProgressBar" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -119.0
+offset_top = -337.0
+offset_right = -79.0
+offset_bottom = -297.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(3.5, 3.5)
+value = 100.0
+fill_mode = 3
+texture_progress = ExtResource("3_j0le3")
+
+[node name="ToastMeter" type="TextureRect" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -119.0
+offset_top = -204.0
+offset_right = -77.0
+offset_bottom = -164.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(2, 1.667)
+texture = ExtResource("4_7iddg")
+
+[node name="WeaponDisplay" type="ColorRect" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -110.0
+offset_right = -80.0
+offset_bottom = -70.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(2.02656, 2.02656)
+color = Color(0.854902, 0.847059, 0.529412, 0.686275)
+
+[node name="WeaponTexture" type="TextureRect" parent="WeaponDisplay"]
+layout_mode = 0
+offset_left = 5.42792
+offset_top = 5.42792
+offset_right = 45.4279
+offset_bottom = 45.4279
+scale = Vector2(0.724901, 0.724901)
+texture = ExtResource("2_yr4c4")
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 15.0
+offset_top = 16.0
+offset_right = 1047.0
+offset_bottom = 1048.0
+scale = Vector2(0.08, 0.08)
+icon = ExtResource("3_3bnkc")
+flat = true
+
+[connection signal="button_down" from="Quit" to="." method="_quit"]

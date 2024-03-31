@@ -8,7 +8,7 @@ enum ID {
 enum Weapon { 
 	# Assigns durability to weapon types
 	default = 0, 
-	cigarette = 20,
-	stapler = 60,
-	toaster = 40
+	cigarette = 25,
+	stapler = 30,
+	toaster = 80
 }

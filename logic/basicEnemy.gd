@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # Movement variables
-@export var defaultSpeed = 1700
+var defaultSpeed = 1700
 var speed = defaultSpeed
 var accel = speed * 10
 @warning_ignore("integer_division")
