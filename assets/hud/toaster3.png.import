@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8q5qbills6mn"
-path="res://.godot/imported/frame 2 towards player.png-e77a89ee657d42e39c63b471fb0c7731.ctex"
+uid="uid://caq34jrhel43n"
+path="res://.godot/imported/toaster3.png-f033ee0b88f8cbc69a5be935f9f19482.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player movement/frame 2 towards player.png"
-dest_files=["res://.godot/imported/frame 2 towards player.png-e77a89ee657d42e39c63b471fb0c7731.ctex"]
+source_file="res://assets/hud/toaster3.png"
+dest_files=["res://.godot/imported/toaster3.png-f033ee0b88f8cbc69a5be935f9f19482.ctex"]
 
 [params]
 

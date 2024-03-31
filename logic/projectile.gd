@@ -30,9 +30,9 @@ func start(type: Weapon, pos, boosted: bool):
 		Weapon.cigarette:
 			spread = PI/4
 			speed = randf_range(-700, -900)
-			drag = randf_range(-30, -20)
+			drag = randf_range(-30, -15)
 			damage = 1
-			pierce = 2
+			pierce = 10
 			knockback = 0
 			$Lifetime.wait_time = randf_range(1, 1.5)
 			var spriteStr = load(imgArray[1])
@@ -42,14 +42,26 @@ func start(type: Weapon, pos, boosted: bool):
 			speed = -1300
 			drag = 0
 			damage = 4
-			pierce = 1
-			knockback = 15
+			pierce = 2
+			knockback = 20
 			$Lifetime.wait_time = 1
 			var spriteStr = load(imgArray[2])
 			spriteNode.texture = spriteStr
+		Weapon.toaster:
+			spread = 0
+			speed = -1000
+			drag = 0
+			damage = 2
+			pierce = 0
+			knockback = 3
+			$Lifetime.wait_time = 0.5
+			var spriteStr = load(imgArray[3])
+			spriteNode.texture = spriteStr
+			$Lifetime.start()
 		_: print("no weapon type specified")
-	look_at(get_global_mouse_position())
-	rotate(PI/2 + randf()*spread - randf()*spread)
+	if type != Weapon.toaster:
+		look_at(get_global_mouse_position())
+		rotate(PI/2 + randf()*spread - randf()*spread)
 	$Lifetime.start()
 	if boosted:
 		damage += 3

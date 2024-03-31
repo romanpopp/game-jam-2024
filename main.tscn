@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 [gd_scene load_steps=32 format=3 uid="uid://bnm1tmofj146x"]
 
 [ext_resource type="Texture2D" uid="uid://cmxa1rg8yituf" path="res://catevido.png" id="1_0dyxt"]
 [ext_resource type="Script" path="res://logic/player.gd" id="1_bwaj2"]
 [ext_resource type="Script" path="res://logic/main.gd" id="1_lnr1l"]
 [ext_resource type="PackedScene" path="res://projectile.tscn" id="2_lvmhd"]
+=======
+[gd_scene load_steps=33 format=3 uid="uid://bnm1tmofj146x"]
+
+[ext_resource type="Texture2D" uid="uid://cmxa1rg8yituf" path="res://catevido.png" id="1_0dyxt"]
+[ext_resource type="Script" path="res://logic/player.gd" id="1_bwaj2"]
+[ext_resource type="PackedScene" uid="uid://bvmmq0pwftwpk" path="res://projectile.tscn" id="2_lvmhd"]
+[ext_resource type="PackedScene" uid="uid://rc7um343nsgw" path="res://toaster.tscn" id="3_5yltg"]
+>>>>>>> 00b2eece36470b045d43881b867bff3510958940
 [ext_resource type="Texture2D" uid="uid://ydmaqhgnky6v" path="res://assets/tiles/floor-0.png" id="3_rewqo"]
 [ext_resource type="Script" path="res://logic/terrain.gd" id="3_wj3d7"]
 [ext_resource type="Texture2D" uid="uid://c1h0iop8m3bh2" path="res://assets/tiles/floor-1.png" id="4_3plf3"]
@@ -16,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://6giygjbuxn8h" path="res://assets/tiles/lava-2.png" id="9_yfu4m"]
 [ext_resource type="Texture2D" uid="uid://b8vot5pdyvars" path="res://assets/tiles/rare-rock-0.png" id="11_tvixc"]
 [ext_resource type="Texture2D" uid="uid://8thenkdwoxrx" path="res://assets/tiles/rare-rock-1.png" id="12_i540a"]
+[ext_resource type="PackedScene" uid="uid://ce8fqxiyibn2" path="res://hud.tscn" id="17_8nyws"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nswdj"]
 size = Vector2(60, 60)
@@ -90,6 +100,7 @@ script = ExtResource("1_lnr1l")
 top_level = true
 script = ExtResource("1_bwaj2")
 projectileScene = ExtResource("2_lvmhd")
+toasterScene = ExtResource("3_5yltg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_nswdj")
@@ -158,9 +169,13 @@ tile_set = SubResource("TileSet_2u8b1")
 format = 2
 script = ExtResource("3_wj3d7")
 
+<<<<<<< HEAD
 [node name="TileStaticBody" type="StaticBody2D" parent="."]
 
 [node name="LavaArea" type="Area2D" parent="."]
+=======
+[node name="HUD" parent="." instance=ExtResource("17_8nyws")]
+>>>>>>> 00b2eece36470b045d43881b867bff3510958940
 
 [connection signal="timeout" from="Player/DodgeCD" to="Player" method="_on_dodge_cd_timeout"]
 [connection signal="timeout" from="Player/ShootCD" to="Player" method="_on_shoot_cd_timeout"]

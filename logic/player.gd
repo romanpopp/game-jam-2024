@@ -15,6 +15,7 @@ var canDodge = true
 
 # HP settings
 @export var hp = 100
+signal healthChange(amt)
 
 # Stat buff variables
 var speedBoost = false
@@ -24,13 +25,21 @@ var damageBoost = false
 
 # Weapon settings
 @export var projectileScene: PackedScene
+@export var toasterScene: PackedScene
 var currentWeapon = Weapon.default
 var canShoot = true
-var durability = 0
+var durability: float = 0.0
+var maxDurability: float = 0.0
+var toasterObject = null
+signal changeWeaponUI(type)
+signal updateAmmoUI(percent)
 
 # Set timer wait times
 func _ready():
 	$DodgeCD.wait_time = dodgeCD
+	healthChange.connect(get_tree().root.get_node("Main/HUD").health_change)
+	changeWeaponUI.connect(get_tree().root.get_node("Main/HUD").change_weapon)
+	updateAmmoUI.connect(get_tree().root.get_node("Main/HUD").update_ammo)
 
 # Checking for button presses
 func _process(delta):
@@ -41,11 +50,13 @@ func _process(delta):
 	if durability <= 0:
 		durability = 0
 		currentWeapon = Weapon.default
+		changeWeaponUI.emit(Weapon.default)
 		$ShootCD.wait_time = 0.8
 	
 	# Durability for cigarette
 	if currentWeapon == Weapon.cigarette:
 		durability -= delta
+		updateAmmoUI.emit(durability / maxDurability * 100)
 
 # Physics processing
 func _physics_process(delta):
@@ -73,12 +84,13 @@ func shoot():
 	$ShootCD.start()
 	match currentWeapon:
 		Weapon.default:
-			instantiate_projectiles(2)
+			instantiate_projectiles(3)
 		Weapon.cigarette:
 			instantiate_projectiles(randi_range(4, 7))
 		Weapon.stapler:
 			instantiate_projectiles(1)
 			durability -= 1
+			updateAmmoUI.emit(durability / maxDurability * 100)
 		Weapon.toaster:
 			pass
 
@@ -87,21 +99,38 @@ func _on_pick_up(id):
 	match id:
 		ID.dayquil: # Health up and temporary speed boost
 			speed = defaultSpeed * speedMultiplier
+			take_damage(-15)
 		ID.nyquil: # Greater health up and temporary damage boost
 			damageBoost = true
 			$DmgBoostTimer.start()
 			damageParticles.emitting = true
+			take_damage(-25)
 		ID.cigarette: # Fires 3-5 ash projectiles that burn, has a timer
+			if toasterObject != null:
+				toasterObject.queue_free()
 			currentWeapon = Weapon.cigarette
 			durability = int(Weapon.cigarette)
+			maxDurability = int(Weapon.cigarette)
 			$ShootCD.wait_time = 0.6
+			changeWeaponUI.emit(Weapon.cigarette)
 		ID.stapler: # Fires large staples that knock back, has limited ammo
+			if toasterObject != null:
+				toasterObject.queue_free()
 			currentWeapon = Weapon.stapler
 			durability = int(Weapon.stapler)
+			maxDurability = int(Weapon.stapler)
 			$ShootCD.wait_time = 0.4
+			changeWeaponUI.emit(Weapon.stapler)
 		ID.toaster: # Melee flail weapon, has limited durability
+			if toasterObject != null:
+				toasterObject.queue_free()
 			currentWeapon = Weapon.toaster
 			durability = int(Weapon.toaster)
+			maxDurability = int(Weapon.toaster)
+			changeWeaponUI.emit(Weapon.toaster)
+			toasterObject = toasterScene.instantiate()
+			add_child(toasterObject)
+			toasterObject.start()
 		_: print("no ID")
 
 func instantiate_projectiles(n: int):
@@ -112,7 +141,7 @@ func instantiate_projectiles(n: int):
 
 func take_damage(dmg):
 	hp -= dmg
-	print (hp)
+	healthChange.emit(-dmg)
 
 # Called by DodgeCD timer after timeout
 func _on_dodge_cd_timeout():
@@ -122,7 +151,7 @@ func _on_dodge_cd_timeout():
 func _on_shoot_cd_timeout():
 	canShoot = true
 
-
+# Called by DmgBoostTimer after timeout
 func _on_dmg_boost_timeout():
 	damageBoost = false
 	damageParticles.emitting = false

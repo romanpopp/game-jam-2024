@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs0611scekk2u"
-path="res://.godot/imported/frame 3 towards player.png-50b596cc7c1a453ce212e624ee648550.ctex"
+uid="uid://c3m1n2geivldv"
+path="res://.godot/imported/toaster-destruction.png-44df9a068bc62f97a9641b3584739f19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player movement/frame 3 towards player.png"
-dest_files=["res://.godot/imported/frame 3 towards player.png-50b596cc7c1a453ce212e624ee648550.ctex"]
+source_file="res://assets/hud/toaster-destruction.png"
+dest_files=["res://.godot/imported/toaster-destruction.png-44df9a068bc62f97a9641b3584739f19.ctex"]
 
 [params]
 

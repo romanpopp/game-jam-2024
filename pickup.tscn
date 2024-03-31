@@ -8,9 +8,9 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dxg0q"]
 
 [node name="Pickup" type="Area2D"]
-scale = Vector2(1.2, 1.2)
+position = Vector2(1, 0)
 script = ExtResource("1_y8bqr")
-imgArray = ["res://assets/buffs/dayquil.png", "res://assets/buffs/nyquil.png", "res://assets/weapons/cigarette.png", "res://assets/weapons/stapler.png"]
+imgArray = ["res://assets/buffs/dayquil.png", "res://assets/buffs/nyquil.png", "res://assets/weapons/cigarette.png", "res://assets/weapons/stapler.png", "res://assets/weapons/toasterOnGround.png"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(3, 3)
