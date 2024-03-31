@@ -184,3 +184,7 @@ func _on_shoot_cd_timeout():
 func _on_dmg_boost_timeout():
 	damageBoost = false
 	damageParticles.emitting = false
+
+func _on_lava_area_body_entered(body):
+	if body.is_in_group("Player"):
+		take_damage(5)

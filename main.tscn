@@ -1,6 +1,5 @@
-[gd_scene load_steps=35 format=3 uid="uid://bk7p5n6d06l3c"]
+[gd_scene load_steps=51 format=3 uid="uid://bk7p5n6d06l3c"]
 
-[ext_resource type="Texture2D" uid="uid://cmxa1rg8yituf" path="res://catevido.png" id="1_0dyxt"]
 [ext_resource type="Script" path="res://logic/player.gd" id="1_bwaj2"]
 [ext_resource type="Script" path="res://logic/main.gd" id="1_u4we3"]
 [ext_resource type="PackedScene" uid="uid://bvmmq0pwftwpk" path="res://projectile.tscn" id="2_lvmhd"]
@@ -8,20 +7,139 @@
 [ext_resource type="Texture2D" uid="uid://ydmaqhgnky6v" path="res://assets/tiles/floor-0.png" id="3_rewqo"]
 [ext_resource type="Script" path="res://logic/terrain.gd" id="3_wj3d7"]
 [ext_resource type="Texture2D" uid="uid://c1h0iop8m3bh2" path="res://assets/tiles/floor-1.png" id="4_3plf3"]
+[ext_resource type="Texture2D" uid="uid://dqtew67v2dc2p" path="res://assets/player movement/down-walk-1.png" id="4_c5r7a"]
+[ext_resource type="Texture2D" uid="uid://8q5qbills6mn" path="res://assets/player movement/down-walk-2.png" id="5_10p2y"]
 [ext_resource type="Texture2D" uid="uid://dr6lmwxhk42rx" path="res://assets/tiles/rock-0.png" id="5_h1scr"]
 [ext_resource type="Texture2D" uid="uid://dudi8qb35ocsg" path="res://assets/tiles/floor-3.png" id="5_k1w0c"]
 [ext_resource type="Texture2D" uid="uid://u7nltm1p1pay" path="res://assets/tiles/floor-2.png" id="6_hvrxi"]
+[ext_resource type="Texture2D" uid="uid://cs0611scekk2u" path="res://assets/player movement/down-walk-3.png" id="6_lrtdc"]
 [ext_resource type="Texture2D" uid="uid://8lbr7m0mxea8" path="res://assets/tiles/rock-1.png" id="6_x5n4s"]
 [ext_resource type="Texture2D" uid="uid://ch3dbvw5xgcc4" path="res://assets/tiles/lava-0.png" id="7_4r04p"]
+[ext_resource type="Texture2D" uid="uid://dfe4ycin2dk2d" path="res://assets/player movement/down-walk-4.png" id="7_dmvme"]
 [ext_resource type="Texture2D" uid="uid://ch1ilmsvp1ymc" path="res://assets/tiles/lava-1.png" id="8_gakec"]
+[ext_resource type="Texture2D" uid="uid://cf0atoik4qhxf" path="res://assets/player movement/down-walk-5.png" id="8_yrx1q"]
+[ext_resource type="Texture2D" uid="uid://qt08s10f1tlw" path="res://assets/player movement/left-walk-1.png" id="9_lbrb8"]
 [ext_resource type="Texture2D" uid="uid://6giygjbuxn8h" path="res://assets/tiles/lava-2.png" id="9_yfu4m"]
+[ext_resource type="Texture2D" uid="uid://c8ytnxdkas2ty" path="res://assets/player movement/left-walk-2.png" id="10_wd1yu"]
+[ext_resource type="Texture2D" uid="uid://biyc2exq2ephl" path="res://assets/player movement/left-walk-3.png" id="11_i013y"]
 [ext_resource type="Texture2D" uid="uid://b8vot5pdyvars" path="res://assets/tiles/rare-rock-0.png" id="11_tvixc"]
 [ext_resource type="Texture2D" uid="uid://8thenkdwoxrx" path="res://assets/tiles/rare-rock-1.png" id="12_i540a"]
+[ext_resource type="Texture2D" uid="uid://di7rkxex6tn84" path="res://assets/player movement/right-walk-1.png" id="12_nrc3k"]
+[ext_resource type="Texture2D" uid="uid://lqyy62pc1hgt" path="res://assets/player movement/right-walk-2.png" id="13_1066r"]
+[ext_resource type="Texture2D" uid="uid://dgiw0ej2wlubm" path="res://assets/player movement/right-walk-3.png" id="14_qgxfe"]
+[ext_resource type="Texture2D" uid="uid://bra5xcp3r65fj" path="res://assets/player movement/up-walk1.png" id="16_4ntqf"]
 [ext_resource type="PackedScene" uid="uid://ce8fqxiyibn2" path="res://hud.tscn" id="17_8nyws"]
+[ext_resource type="Texture2D" uid="uid://boygfacmtrf8p" path="res://assets/player movement/up-walk2.png" id="17_nos0a"]
+[ext_resource type="Texture2D" uid="uid://b1q7eu2628ncn" path="res://assets/player movement/up-walk3.png" id="18_scpqo"]
+[ext_resource type="Texture2D" uid="uid://bcctuqkr7okhl" path="res://assets/player movement/up-walk4.png" id="19_ldnk3"]
 [ext_resource type="AudioStream" uid="uid://ciq12eh1lurjn" path="res://assets/sawMill.mp3" id="19_mbudr"]
+[ext_resource type="Texture2D" uid="uid://bdq6o7sa6s541" path="res://assets/player movement/up-walk5.png" id="20_0wolq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nswdj"]
 size = Vector2(60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5srbi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_c5r7a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_c5r7a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_10p2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lrtdc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_10p2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_c5r7a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dmvme")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_yrx1q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dmvme")
+}],
+"loop": true,
+"name": &"down",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_lbrb8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_wd1yu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_i013y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_wd1yu")
+}],
+"loop": true,
+"name": &"left",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_nrc3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_1066r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_qgxfe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_1066r")
+}],
+"loop": true,
+"name": &"right",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_4ntqf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_nos0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_scpqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_nos0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_4ntqf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_ldnk3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_0wolq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_ldnk3")
+}],
+"loop": true,
+"name": &"up",
+"speed": 10.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_svgyo"]
 colors = PackedColorArray(1, 0.415686, 0, 1, 1, 1, 1, 1)
@@ -87,6 +205,7 @@ sources/2 = SubResource("TileSetAtlasSource_l2p6k")
 sources/3 = SubResource("TileSetAtlasSource_kvrjc")
 
 [node name="Main" type="Node2D"]
+position = Vector2(0, -2)
 script = ExtResource("1_u4we3")
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
@@ -98,10 +217,12 @@ toasterScene = ExtResource("3_5yltg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_nswdj")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-position = Vector2(5.96046e-08, -4.76837e-07)
-scale = Vector2(0.118023, 0.236047)
-texture = ExtResource("1_0dyxt")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(0, -20)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_5srbi")
+animation = &"up"
+frame_progress = 0.358847
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.8, 0.8)
@@ -154,15 +275,16 @@ hue_variation_max = 1.0
 
 [node name="Tiles" type="TileMap" parent="."]
 show_behind_parent = true
-position = Vector2(-32, -32)
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_2u8b1")
 format = 2
 script = ExtResource("3_wj3d7")
 
 [node name="TileStaticBody" type="StaticBody2D" parent="."]
+position = Vector2(32, 32)
 
 [node name="LavaArea" type="Area2D" parent="."]
+position = Vector2(32, 32)
 
 [node name="HUD" parent="." instance=ExtResource("17_8nyws")]
 
