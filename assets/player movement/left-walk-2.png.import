@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duv878omasurd"
-path="res://.godot/imported/walk forward frame 2.png-9624d2ab422e22b36c32d41abc29d061.ctex"
+uid="uid://c8ytnxdkas2ty"
+path="res://.godot/imported/left-walk-2.png-304673c34180f5190c534ce5428bf8ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player movement/walk forward frame 2.png"
-dest_files=["res://.godot/imported/walk forward frame 2.png-9624d2ab422e22b36c32d41abc29d061.ctex"]
+source_file="res://assets/player movement/left-walk-2.png"
+dest_files=["res://.godot/imported/left-walk-2.png-304673c34180f5190c534ce5428bf8ef.ctex"]
 
 [params]
 

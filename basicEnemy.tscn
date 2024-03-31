@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bo8tjf50fxawe"]
 
 [ext_resource type="Script" path="res://logic/basicEnemy.gd" id="1_em3u8"]
-[ext_resource type="Texture2D" uid="uid://dn3w5f8qq6cdb" path="res://assets/basicEnemy.png" id="2_vou3f"]
+[ext_resource type="Texture2D" uid="uid://ca2hn7s60bvdc" path="res://assets/enemies/basicEnemy.png" id="2_7brlh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1bq4"]
 
@@ -15,7 +15,7 @@ shape = SubResource("CircleShape2D_b1bq4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_vou3f")
+texture = ExtResource("2_7brlh")
 
 [node name="WanderTime" type="Timer" parent="."]
 

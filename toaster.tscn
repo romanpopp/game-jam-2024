@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://rc7um343nsgw"]
+
+[ext_resource type="Script" path="res://logic/toaster.gd" id="1_3qtds"]
+[ext_resource type="Texture2D" uid="uid://3kdfbcm6y5lb" path="res://assets/weapons/toasterFlail.png" id="1_rxfkw"]
+[ext_resource type="PackedScene" uid="uid://bvmmq0pwftwpk" path="res://projectile.tscn" id="2_jhc2x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dnypi"]
+
+[node name="toaster" type="Area2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_3qtds")
+projectileScene = ExtResource("2_jhc2x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-25, -25)
+shape = SubResource("CircleShape2D_dnypi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rxfkw")
+offset = Vector2(-16, -16)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coij8a2xy5nld"
-path="res://.godot/imported/walk forward frame 5.png-72dc4d01b4b087b81f4101330d5eaa10.ctex"
+uid="uid://1etlhae5oc3h"
+path="res://.godot/imported/toast.png-452844c16e035e55b564e227f305e180.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player movement/walk forward frame 5.png"
-dest_files=["res://.godot/imported/walk forward frame 5.png-72dc4d01b4b087b81f4101330d5eaa10.ctex"]
+source_file="res://assets/hud/toast.png"
+dest_files=["res://.godot/imported/toast.png-452844c16e035e55b564e227f305e180.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lqyy62pc1hgt"
-path="res://.godot/imported/pixil-layer-side frame face right 2.png-23e415e6aca9270d839feffc06ab6440.ctex"
+uid="uid://dyn36br8hu8m6"
+path="res://.godot/imported/cigarBurn.png-474129fee6fcd27acd6841cfa9c65575.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player movement/pixil-layer-side frame face right 2.png"
-dest_files=["res://.godot/imported/pixil-layer-side frame face right 2.png-23e415e6aca9270d839feffc06ab6440.ctex"]
+source_file="res://assets/hud/cigarBurn.png"
+dest_files=["res://.godot/imported/cigarBurn.png-474129fee6fcd27acd6841cfa9c65575.ctex"]
 
 [params]
 

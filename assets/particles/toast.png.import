@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqtew67v2dc2p"
-path="res://.godot/imported/frame 1 towards player.png-5a5d30b510dedd559290c094453a0c8b.ctex"
+uid="uid://djga6bhs1iptg"
+path="res://.godot/imported/toast.png-a927c4992dc76194d1d8a64925a5c6cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player movement/frame 1 towards player.png"
-dest_files=["res://.godot/imported/frame 1 towards player.png-5a5d30b510dedd559290c094453a0c8b.ctex"]
+source_file="res://assets/particles/toast.png"
+dest_files=["res://.godot/imported/toast.png-a927c4992dc76194d1d8a64925a5c6cb.ctex"]
 
 [params]
 

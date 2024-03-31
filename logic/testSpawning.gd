@@ -24,6 +24,7 @@ func _ready():
 	create_pickup(ID.nyquil, Vector2(200, 100))
 	create_pickup(ID.cigarette, Vector2(300, 100))
 	create_pickup(ID.stapler, Vector2(400, 100))
+	create_pickup(ID.toaster, Vector2(500, 100))
 	
 	create_enemy(Vector2(-300, -300))
 	create_enemy(Vector2(-500, -300))

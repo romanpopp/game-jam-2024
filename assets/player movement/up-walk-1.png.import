@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di7rkxex6tn84"
-path="res://.godot/imported/pixil-layer-side frame face right 1.png-4fdc7e10a65f72fe18d4462cb0f55ac6.ctex"
+uid="uid://dr4vdg0ipscwx"
+path="res://.godot/imported/up-walk-1.png-d26e213e6eadbc53560ec40792d6ef22.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player movement/pixil-layer-side frame face right 1.png"
-dest_files=["res://.godot/imported/pixil-layer-side frame face right 1.png-4fdc7e10a65f72fe18d4462cb0f55ac6.ctex"]
+source_file="res://assets/player movement/up-walk-1.png"
+dest_files=["res://.godot/imported/up-walk-1.png-d26e213e6eadbc53560ec40792d6ef22.ctex"]
 
 [params]
 
