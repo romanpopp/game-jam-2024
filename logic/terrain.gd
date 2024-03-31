@@ -2,8 +2,8 @@ extends TileMap
 
 const tile_width: int = 64
 const tile_size = Vector2i(tile_width, tile_width)
-const width: int = 40
-const height: int = 22
+const width: int = 42
+const height: int = 24
 const unload_distance = width * 2
 const spawn_size = 8
 
@@ -11,23 +11,22 @@ var player: CharacterBody2D
 var static_body: StaticBody2D
 
 var rock_noise_gen: FastNoiseLite = FastNoiseLite.new()
-var dark_rock_noise_gen: FastNoiseLite = FastNoiseLite.new()
+var rare_rock_noise_gen: FastNoiseLite = FastNoiseLite.new()
 var lava_noise_gen: FastNoiseLite = FastNoiseLite.new()
-var hard_lava_noise_gen: FastNoiseLite = FastNoiseLite.new()
 
 var loaded_tiles = {}
 
 func _ready():
 	player = get_parent().get_node("Player")
-	static_body = get_parent().get_node("StaticBody2D")
+	static_body = get_parent().get_node("TileStaticBody")
 
 	rock_noise_gen.noise_type = FastNoiseLite.TYPE_VALUE
 	rock_noise_gen.frequency = 0.2
 	rock_noise_gen.seed = randi()
 
-	dark_rock_noise_gen.noise_type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH
-	dark_rock_noise_gen.frequency = 0.3
-	dark_rock_noise_gen.seed = randi()
+	rare_rock_noise_gen.noise_type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH
+	rare_rock_noise_gen.frequency = 0.3
+	rare_rock_noise_gen.seed = randi()
 
 	lava_noise_gen.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	lava_noise_gen.frequency = 0.04
@@ -62,28 +61,30 @@ func generate_tile(tile_pos):
 		set_cell(0, tile_pos, randi_range(10, 11), Vector2(0, 0), 0)
 		var collision_shape = make_collision_shape(tile_pos)
 		loaded_tiles[tile_pos] = collision_shape
-	elif has_dark_rock(tile_pos):
-		set_cell(0, tile_pos, 12, Vector2(0, 0), 0)
+	elif has_rare_rock(tile_pos):
+		set_cell(0, tile_pos, randi_range(30, 31), Vector2(0, 0), 0)
 		var collision_shape = make_collision_shape(tile_pos)
 		loaded_tiles[tile_pos] = collision_shape
 	elif has_lava(tile_pos):
-		set_cell(0, tile_pos, randi_range(20, 21), Vector2(0, 0), 0)
+		set_cell(0, tile_pos, randi_range(20, 22), Vector2(0, 0), 0)
 		# set lava collider
 	else:
 		set_tile_floor(tile_pos)
 
 func set_tile_floor(tile_pos):
 	match randi_range(0, 100):
-		var r when r < 90:
-			set_cell(0, tile_pos, 0, Vector2(0, 0))
+		var r when r > 99:
+			set_cell(0, tile_pos, 3, Vector2(0, 0))
+		var r when r > 70:
+			set_cell(0, tile_pos, randi_range(1, 2), Vector2(0, 0))
 		_:
-			set_cell(0, tile_pos, randi_range(0, 3), Vector2(0, 0))
+			set_cell(0, tile_pos, 0, Vector2(0, 0))
 
 func has_rock(tile_pos) -> bool:
 	return (rock_noise_gen.get_noise_2d(tile_pos.x, tile_pos.y) + 1) / 2 > 0.60
 
-func has_dark_rock(tile_pos) -> bool:
-	return (dark_rock_noise_gen.get_noise_2d(tile_pos.x, tile_pos.y) + 1) / 2 > 0.80
+func has_rare_rock(tile_pos) -> bool:
+	return (rare_rock_noise_gen.get_noise_2d(tile_pos.x, tile_pos.y) + 1) / 2 > 0.80
 	
 func has_lava(tile_pos) -> bool:
 	return (lava_noise_gen.get_noise_2d(tile_pos.x, tile_pos.y) + 1) / 2 > 0.67
