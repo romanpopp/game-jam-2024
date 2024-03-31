@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvmmq0pwftwpk"]
+
+[ext_resource type="Script" path="res://logic/projectile.gd" id="1_fli82"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0w7vs"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_21u2d"]
+
+[node name="Projectile" type="Area2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_fli82")
+imgArray = ["res://assets/particles/lint.png", "res://assets/particles/ash.png", "res://assets/particles/staple.png"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_0w7vs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = SubResource("PlaceholderTexture2D_21u2d")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Lifetime" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_not_visible_on_screen"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]
