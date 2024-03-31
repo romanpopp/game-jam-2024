@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo8tjf50fxawe"]
+
+[ext_resource type="Script" path="res://logic/basicEnemy.gd" id="1_em3u8"]
+[ext_resource type="Texture2D" uid="uid://dn3w5f8qq6cdb" path="res://assets/basicEnemy.png" id="2_vou3f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b1bq4"]
+
+[node name="BasicEnemy" type="CharacterBody2D" groups=["Enemy"]]
+top_level = true
+scale = Vector2(3, 3)
+script = ExtResource("1_em3u8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_b1bq4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_vou3f")
+
+[node name="WanderTime" type="Timer" parent="."]
+
+[connection signal="timeout" from="WanderTime" to="." method="_on_wander_time_timeout"]

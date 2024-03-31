@@ -1,9 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmrsyt3jr3vnd"]
+[gd_scene load_steps=10 format=3 uid="uid://cmrsyt3jr3vnd"]
 
 [ext_resource type="Texture2D" uid="uid://cmxa1rg8yituf" path="res://catevido.png" id="1_0dyxt"]
 [ext_resource type="Script" path="res://logic/player.gd" id="1_bwaj2"]
+[ext_resource type="PackedScene" uid="uid://bvmmq0pwftwpk" path="res://projectile.tscn" id="3_yqswm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nswdj"]
+
+[sub_resource type="Gradient" id="Gradient_svgyo"]
+colors = PackedColorArray(1, 0.415686, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_os85p"]
+colors = PackedColorArray(0.415686, 0.282353, 1, 1, 1, 0.258824, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4i80i"]
 size = Vector2(63, 299)
@@ -18,32 +25,78 @@ fill_to = Vector2(0, 0)
 
 [node name="Main" type="Node2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
+top_level = true
 script = ExtResource("1_bwaj2")
+projectileScene = ExtResource("3_yqswm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 scale = Vector2(5, 5)
 shape = SubResource("RectangleShape2D_nswdj")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
 scale = Vector2(0.2, 0.4)
 texture = ExtResource("1_0dyxt")
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.8, 0.8)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
-[node name="DodgeCD" type="Timer" parent="CharacterBody2D"]
+[node name="DodgeCD" type="Timer" parent="Player"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="ShootCD" type="Timer" parent="Player"]
+
+[node name="DmgBoostTimer" type="Timer" parent="Player"]
+wait_time = 10.0
+
+[node name="BoostParticles" type="CPUParticles2D" parent="Player"]
+emitting = false
+amount = 15
+lifetime = 0.5
+speed_scale = 1.94
+randomness = 0.48
+emission_shape = 1
+emission_sphere_radius = 51.64
+direction = Vector2(0, 0)
+spread = 26.82
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+scale_amount_max = 4.0
+color = Color(1, 1, 0.215686, 1)
+color_ramp = SubResource("Gradient_svgyo")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="DamageParticles" type="CPUParticles2D" parent="Player"]
+emitting = false
+amount = 15
+lifetime = 0.5
+speed_scale = 1.94
+randomness = 0.48
+emission_shape = 1
+emission_sphere_radius = 51.64
+direction = Vector2(0, 0)
+spread = 26.82
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_os85p")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="testwall" type="StaticBody2D" parent="." groups=["Walls"]]
 position = Vector2(-244, 18)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="testwall"]
 position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_4i80i")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="testwall"]
 texture = SubResource("GradientTexture2D_kyjom")
 
-[connection signal="timeout" from="CharacterBody2D/DodgeCD" to="CharacterBody2D" method="_on_dodge_cd_timeout"]
+[connection signal="timeout" from="Player/DodgeCD" to="Player" method="_on_dodge_cd_timeout"]
+[connection signal="timeout" from="Player/ShootCD" to="Player" method="_on_shoot_cd_timeout"]
+[connection signal="timeout" from="Player/DmgBoostTimer" to="Player" method="_on_dmg_boost_timeout"]
