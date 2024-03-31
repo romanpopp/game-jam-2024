@@ -3,7 +3,7 @@ extends CharacterBody2D
 # Health
 @export var hp = 10
 var damage = 20
-var canShoot = false
+var canShoot = true
 
 @onready var player = get_parent().get_node("Player")
 @onready var tiles: TileMap = get_parent().get_node("Tiles")
@@ -13,8 +13,6 @@ const tile_size: Vector2 = preload("res://logic/terrain.gd").tile_size
 
 func start(pos):
 	position = pos
-	$ShootCD.wait_time = randf_range(2.5, 2.8)
-	$ShootCD.start()
 
 func _physics_process(delta):
 	var direction: Vector2 = player.position - position
