@@ -55,3 +55,7 @@ func knock_back(mag):
 func _on_wander_time_timeout():
 	wandering = false
 	speed = defaultSpeed
+
+
+func _on_lifetime_timeout():
+	queue_free()
