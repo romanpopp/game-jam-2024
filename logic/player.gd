@@ -22,6 +22,7 @@ var speedBoost = false
 var damageBoost = false
 @onready var boostParticles = get_node('BoostParticles')
 @onready var damageParticles = get_node('DamageParticles')
+var dead = false
 
 # Weapon settings
 @export var projectileScene: PackedScene
@@ -33,6 +34,9 @@ var maxDurability: float = 0.0
 var toasterObject = null
 signal changeWeaponUI(type)
 signal updateAmmoUI(percent)
+
+# Animation settings
+@onready var sprite = get_node("AnimatedSprite2D")
 
 # Set timer wait times
 func _ready():
@@ -53,10 +57,16 @@ func _process(delta):
 		changeWeaponUI.emit(Weapon.default)
 		$ShootCD.wait_time = 0.8
 	
+	# 4:44AM toaster check
+	if toasterObject == null && currentWeapon == Weapon.toaster:
+		currentWeapon = Weapon.default
+		changeWeaponUI.emit(Weapon.default)
+	
 	# Durability for cigarette
 	if currentWeapon == Weapon.cigarette:
 		durability -= delta
 		updateAmmoUI.emit(durability / maxDurability * 100)
+	animation()
 
 # Physics processing
 func _physics_process(delta):
@@ -67,6 +77,18 @@ func _physics_process(delta):
 	velocity += Input.get_vector("left", "right", "up", "down") * delta * speed
 	velocity -= velocity * delta * friction
 	move_and_slide()
+
+func animation():
+	if Input.is_action_pressed("down"):
+		sprite.play("down")
+	else: if Input.is_action_pressed("up"):
+		sprite.play("up")
+	else: if Input.is_action_pressed("left"):
+		sprite.play("left")
+	else: if Input.is_action_pressed("right"):
+		sprite.play("right")
+	else:
+		sprite.play("default")
 
 # Dodge function
 func dodge():
@@ -142,6 +164,11 @@ func instantiate_projectiles(n: int):
 func take_damage(dmg):
 	hp -= dmg
 	healthChange.emit(-dmg)
+	if hp <= 0:
+		get_tree().root.get_node("Main/HUD/GameOver").visible = true
+		speed = 0
+		canShoot = false
+		dead = true
 
 # Called by DodgeCD timer after timeout
 func _on_dodge_cd_timeout():
@@ -149,6 +176,8 @@ func _on_dodge_cd_timeout():
 
 # Called by ShootCD timer after timeout
 func _on_shoot_cd_timeout():
+	if dead:
+		return
 	canShoot = true
 
 # Called by DmgBoostTimer after timeout

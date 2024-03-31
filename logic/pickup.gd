@@ -21,4 +21,5 @@ func start(id: ID, pos):
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		picked_up.emit(type)
+		get_tree().root.get_node("Main/HUD").add_score(100)
 		queue_free()

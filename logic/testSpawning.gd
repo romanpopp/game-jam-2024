@@ -13,9 +13,15 @@ func create_pickup(id, pos):
 
 # Everything you need to instantiate a Basic Enemy
 const enemyScene = preload("res://basicEnemy.tscn")
+const enemyScene2 = preload("res://rangedEnemy.tscn")
 
 func create_enemy(pos):
 	var newEnemy = enemyScene.instantiate()
+	add_child(newEnemy)
+	newEnemy.start(pos)
+
+func create_range_enemy(pos):
+	var newEnemy = enemyScene2.instantiate()
 	add_child(newEnemy)
 	newEnemy.start(pos)
 
@@ -29,3 +35,7 @@ func _ready():
 	create_enemy(Vector2(-300, -300))
 	create_enemy(Vector2(-500, -300))
 	create_enemy(Vector2(-300, -500))
+	
+	create_range_enemy(Vector2(300, 300))
+	create_range_enemy(Vector2(500, 300))
+	create_range_enemy(Vector2(300, 500))

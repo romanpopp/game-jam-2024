@@ -9,7 +9,7 @@
 [node name="Projectile" type="Area2D"]
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_fli82")
-imgArray = ["res://assets/particles/lint.png", "res://assets/particles/fireball.png", "res://assets/particles/staple.png", "res://assets/particles/toast.png"]
+imgArray = ["res://assets/particles/lint.png", "res://assets/particles/ash.png", "res://assets/particles/staple.png", "res://assets/particles/toast.png"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.5, 1.5)
