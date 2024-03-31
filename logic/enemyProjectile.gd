@@ -23,6 +23,5 @@ func _on_body_entered(body):
 		body.call("take_damage", damage)
 		queue_free()
 
-
 func _on_lifetime_timeout():
 	queue_free()
