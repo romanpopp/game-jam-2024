@@ -20,7 +20,7 @@ func _ready():
 	player = get_node("Player")
 	tiles = get_node("Tiles")
 
-func _process(delta):
+func _physics_process(delta):
 	var input_vector: Vector2 = Input.get_vector("left", "right", "up", "down")
 	if input_vector == Vector2(0, 0):
 		return
@@ -67,8 +67,8 @@ func _process(delta):
 		add_child(new_pickup)
 	
 	if (frames_until_enemy_spawn == 0):
-		frames_until_enemy_spawn = 100
+		frames_until_enemy_spawn = 50
 	if (frames_until_item_spawn == 0):
-		frames_until_item_spawn = 400
+		frames_until_item_spawn = 50
 	frames_until_enemy_spawn -= 1
 	frames_until_item_spawn -= 1

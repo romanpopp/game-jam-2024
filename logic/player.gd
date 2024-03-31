@@ -108,7 +108,7 @@ func shoot():
 		Weapon.default:
 			instantiate_projectiles(3)
 		Weapon.cigarette:
-			instantiate_projectiles(randi_range(4, 7))
+			instantiate_projectiles(randi_range(7, 12))
 		Weapon.stapler:
 			instantiate_projectiles(1)
 			durability -= 1
