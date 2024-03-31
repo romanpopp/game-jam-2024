@@ -43,7 +43,6 @@ func change_weapon(type):
 	ammoBar.value = 100
 
 func update_ammo(percent):
-	print(percent)
 	ammoBar.value = percent
 
 func update_toaster(toastCount, durabilityStage):
