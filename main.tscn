@@ -1,7 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://bnm1tmofj146x"]
+[gd_scene load_steps=32 format=3 uid="uid://bnm1tmofj146x"]
 
 [ext_resource type="Texture2D" uid="uid://cmxa1rg8yituf" path="res://catevido.png" id="1_0dyxt"]
 [ext_resource type="Script" path="res://logic/player.gd" id="1_bwaj2"]
+[ext_resource type="Script" path="res://logic/main.gd" id="1_lnr1l"]
 [ext_resource type="PackedScene" path="res://projectile.tscn" id="2_lvmhd"]
 [ext_resource type="Texture2D" uid="uid://ydmaqhgnky6v" path="res://assets/tiles/floor-0.png" id="3_rewqo"]
 [ext_resource type="Script" path="res://logic/terrain.gd" id="3_wj3d7"]
@@ -83,6 +84,7 @@ sources/2 = SubResource("TileSetAtlasSource_l2p6k")
 sources/3 = SubResource("TileSetAtlasSource_kvrjc")
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_lnr1l")
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
 top_level = true
@@ -146,16 +148,21 @@ color_ramp = SubResource("Gradient_os85p")
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 
-[node name="TileStaticBody" type="StaticBody2D" parent="."]
-position = Vector2(32, 32)
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Player"]
 
 [node name="Tiles" type="TileMap" parent="."]
 show_behind_parent = true
+position = Vector2(-32, -32)
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_2u8b1")
 format = 2
 script = ExtResource("3_wj3d7")
 
+[node name="TileStaticBody" type="StaticBody2D" parent="."]
+
+[node name="LavaArea" type="Area2D" parent="."]
+
 [connection signal="timeout" from="Player/DodgeCD" to="Player" method="_on_dodge_cd_timeout"]
 [connection signal="timeout" from="Player/ShootCD" to="Player" method="_on_shoot_cd_timeout"]
 [connection signal="timeout" from="Player/DmgBoostTimer" to="Player" method="_on_dmg_boost_timeout"]
+[connection signal="body_entered" from="LavaArea" to="Player" method="_on_lava_area_body_entered"]
