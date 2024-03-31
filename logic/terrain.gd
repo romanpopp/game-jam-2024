@@ -61,13 +61,13 @@ func generate_chunks(player_tile_pos: Vector2i):
 func generate_tile(tile_pos):
 	loaded_tiles[tile_pos] = null
 	if has_rock(tile_pos):
-		set_cell(0, tile_pos, randi_range(10, 11), Vector2(0, 0), 0)
+		set_cell(0, tile_pos, randi_range(10, 11), Vector2(0, 0))
 		set_collision_for_tile(tile_static_body, tile_pos)
 	elif has_rare_rock(tile_pos):
-		set_cell(0, tile_pos, randi_range(30, 31), Vector2(0, 0), 0)
+		set_cell(0, tile_pos, randi_range(30, 31), Vector2(0, 0))
 		set_collision_for_tile(tile_static_body, tile_pos)
 	elif has_lava(tile_pos):
-		set_cell(0, tile_pos, randi_range(20, 22), Vector2(0, 0), 0)
+		set_cell(0, tile_pos, randi_range(20, 22), Vector2(0, 0))
 		set_collision_for_tile(lava_area, tile_pos)
 	else:
 		set_tile_floor(tile_pos)

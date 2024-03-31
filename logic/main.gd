@@ -11,16 +11,18 @@ const spawn_distance = Vector2(screen_tile_width,  screen_tile_width)
 
 var player: CharacterBody2D
 var tiles: TileMap
+var hud
 var last_nonzero_input_vector: Vector2 = Vector2(0, 0)
 var frames_until_enemy_spawn = 0
-var enemys_until_ranged = 0
+var enemys_until_ranged = 20
 var frames_until_item_spawn = 0
 
 func _ready():
 	player = get_node("Player")
 	tiles = get_node("Tiles")
+	hud = get_node("HUD")
 
-func _process(delta):
+func _physics_process(delta):
 	var input_vector: Vector2 = Input.get_vector("left", "right", "up", "down")
 	if input_vector == Vector2(0, 0):
 		return
@@ -36,7 +38,7 @@ func _process(delta):
 		var new_enemy
 		if enemys_until_ranged == 0:
 			new_enemy = ranged_enemy_scene.instantiate()
-			enemys_until_ranged = 10
+			enemys_until_ranged = 20
 		else:
 			new_enemy = enemy_scene.instantiate()
 			enemys_until_ranged -= 1
@@ -67,8 +69,8 @@ func _process(delta):
 		add_child(new_pickup)
 	
 	if (frames_until_enemy_spawn == 0):
-		frames_until_enemy_spawn = 100
+		frames_until_enemy_spawn = 80 - max(10, hud.score / 100)
 	if (frames_until_item_spawn == 0):
-		frames_until_item_spawn = 400
+		frames_until_item_spawn = 120
 	frames_until_enemy_spawn -= 1
 	frames_until_item_spawn -= 1
