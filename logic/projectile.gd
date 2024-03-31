@@ -28,10 +28,10 @@ func start(type: Weapon, pos, boosted: bool):
 			var spriteStr = load(imgArray[0])
 			spriteNode.texture = spriteStr
 		Weapon.cigarette:
-			spread = PI/4
-			speed = randf_range(-900, -1200)
+			spread = PI/8
+			speed = randf_range(-800, -1100)
 			drag = randf_range(-30, -15)
-			damage = 2
+			damage = 1
 			pierce = 10
 			knockback = 0
 			$Lifetime.wait_time = randf_range(1, 1.5)
@@ -67,7 +67,7 @@ func start(type: Weapon, pos, boosted: bool):
 		damage += 3
 
 # Bullet go shoot
-func _process(delta):
+func _physics_process(delta):
 	position += global_transform.y * speed * delta 
 	if speed <= -20: 
 		speed -= drag
