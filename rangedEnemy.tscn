@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://nesdgmrtsm4w"]
+[gd_scene load_steps=5 format=3 uid="uid://bben452r2em8q"]
 
 [ext_resource type="Script" path="res://logic/rangedEnemy.gd" id="1_2g51r"]
 [ext_resource type="Texture2D" uid="uid://mw1we7mj88dd" path="res://assets/enemies/rangeEnemy.png" id="1_eiu2k"]
-[ext_resource type="PackedScene" uid="uid://bhq3phg1p15ah" path="res://enemyProjectile.tscn" id="2_f2tpq"]
+[ext_resource type="PackedScene" uid="uid://bxk3ia5kbaye3" path="res://enemyProjectile.tscn" id="2_f2tpq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k724y"]
 
