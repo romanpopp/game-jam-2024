@@ -42,7 +42,7 @@ func start(type: Weapon, pos, boosted: bool):
 			speed = -1300
 			drag = 0
 			damage = 4
-			pierce = 2
+			pierce = 1
 			knockback = 20
 			$Lifetime.wait_time = 1
 			var spriteStr = load(imgArray[2])

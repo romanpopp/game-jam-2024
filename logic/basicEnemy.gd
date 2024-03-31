@@ -43,7 +43,9 @@ func _physics_process(delta):
 # Makes this enemy take damage
 func take_damage(dmg):
 	hp -= dmg
-	if (hp <= 0): queue_free()
+	if (hp <= 0): 
+		get_tree().root.get_node("Main/HUD").add_score(50)
+		queue_free()
 
 # Knocks back the enemy
 func knock_back(mag):

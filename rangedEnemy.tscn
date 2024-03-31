@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://nesdgmrtsm4w"]
+
+[ext_resource type="Script" path="res://logic/rangedEnemy.gd" id="1_2g51r"]
+[ext_resource type="Texture2D" uid="uid://mw1we7mj88dd" path="res://assets/enemies/rangeEnemy.png" id="1_eiu2k"]
+[ext_resource type="PackedScene" uid="uid://bhq3phg1p15ah" path="res://enemyProjectile.tscn" id="2_f2tpq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k724y"]
+
+[node name="rangedEnemy" type="CharacterBody2D" groups=["Enemy"]]
+scale = Vector2(4, 4)
+script = ExtResource("1_2g51r")
+projectileScene = ExtResource("2_f2tpq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k724y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.75, 0)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_eiu2k")
+
+[node name="ShootCD" type="Timer" parent="."]
+
+[connection signal="timeout" from="ShootCD" to="." method="_on_shoot_cd_timeout"]
