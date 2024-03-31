@@ -3,15 +3,13 @@ extends CharacterBody2D
 # Health
 @export var hp = 10
 var damage = 20
-var canShoot = false
+var canShoot = true
 
 @onready var player = get_parent().get_node("Player")
 @export var projectileScene: PackedScene
 
 func start(pos):
 	position = pos
-	$ShootCD.wait_time = randf_range(2.5, 2.8)
-	$ShootCD.start()
 
 func _physics_process(delta):
 	var direction: Vector2 = player.position - position

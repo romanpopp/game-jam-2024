@@ -18,7 +18,8 @@ shape = SubResource("CircleShape2D_0w7vs")
 scale = Vector2(3, 3)
 texture = ExtResource("1_f3h2q")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 8.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_not_visible_on_screen"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

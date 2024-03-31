@@ -181,6 +181,7 @@ text = "Score: "
 
 [node name="Quit2" type="Button" parent="GameOver"]
 top_level = true
+layout_mode = 0
 offset_left = 15.0
 offset_top = 16.0
 offset_right = 1047.0

@@ -5,6 +5,7 @@ var damage = 20
 var speed = -300
 
 func start(pos):
+	$Lifetime.start()
 	position = pos
 	var direction: Vector2 = position - player.position
 	rotation = direction.angle()
@@ -21,3 +22,7 @@ func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		body.call("take_damage", damage)
 		queue_free()
+
+
+func _on_lifetime_timeout():
+	queue_free()
