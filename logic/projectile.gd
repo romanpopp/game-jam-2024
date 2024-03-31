@@ -29,9 +29,9 @@ func start(type: Weapon, pos, boosted: bool):
 			spriteNode.texture = spriteStr
 		Weapon.cigarette:
 			spread = PI/4
-			speed = randf_range(-700, -900)
+			speed = randf_range(-900, -1200)
 			drag = randf_range(-30, -15)
-			damage = 1
+			damage = 2
 			pierce = 10
 			knockback = 0
 			$Lifetime.wait_time = randf_range(1, 1.5)
