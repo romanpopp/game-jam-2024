@@ -23,3 +23,7 @@ func _on_body_entered(body):
 		picked_up.emit(type)
 		get_tree().root.get_node("Main/HUD").add_score(100)
 		queue_free()
+
+
+func _on_lifespan_timeout():
+	queue_free()

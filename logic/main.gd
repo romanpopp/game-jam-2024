@@ -48,7 +48,7 @@ func _physics_process(delta):
 	if frames_until_item_spawn == 0:
 		var item_pos: Vector2
 		while (true):
-			item_pos = Vector2i((last_nonzero_input_vector.rotated(randfn(0, PI / 3)) * spawn_distance) + player.position / tile_size)
+			item_pos = Vector2i((last_nonzero_input_vector.rotated(randfn(0, PI / 3)) * spawn_distance) + player.position / tile_size) * randf_range(.5, 1)
 			if !tiles.contains_rock(item_pos):
 				break
 		var item_id
@@ -69,8 +69,8 @@ func _physics_process(delta):
 		add_child(new_pickup)
 	
 	if (frames_until_enemy_spawn == 0):
-		frames_until_enemy_spawn = 80 - max(10, hud.score / 100)
+		frames_until_enemy_spawn = max(10, 80 - hud.score / 100)
 	if (frames_until_item_spawn == 0):
-		frames_until_item_spawn = 120
+		frames_until_item_spawn = 360
 	frames_until_enemy_spawn -= 1
 	frames_until_item_spawn -= 1

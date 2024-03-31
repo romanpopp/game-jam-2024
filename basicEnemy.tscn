@@ -19,4 +19,8 @@ texture = ExtResource("2_7brlh")
 
 [node name="WanderTime" type="Timer" parent="."]
 
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 130.0
+
 [connection signal="timeout" from="WanderTime" to="." method="_on_wander_time_timeout"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]
